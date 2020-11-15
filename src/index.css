@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.genius-outer-container {
+    background: #232323;
+}
+
+.genius-inner-container {
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    font-family: sans-serif;
+}
+
+.genius-form-container {
+    display: flex;
+    justify-content: center;
+    padding: 100px 0;
+}
+
+.single-song-container {
+    width: 27%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 23px;
+}
+
+.single-song-container img {
+    width: 100%;
+}
