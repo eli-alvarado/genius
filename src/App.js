@@ -7,17 +7,26 @@ function App() {
   const [artists, setArtists] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('');
+  const [artistsAPI, setArtistsAPI] = useState('');
 
   var clientAccessToken = 'rnGNBFYfq9SZiCFfFqJmA6HGksYEkx3QetJYqYYeJUjoFajhfbdSHrbeUgWp2cFa';
-  var geniusURL = `https://api.genius.com/search?access_token=${clientAccessToken}&q=${query}`;
+  var geniusQueryURL = `https://api.genius.com/search?access_token=${clientAccessToken}&q=${query}`;
+  var geniusArtistURL = `https://api.genius.com/${artistsAPI}?access_token=${clientAccessToken}`;
+
 
 const geniusRequest = () => {
-  axios.get(geniusURL)
+  axios.get(geniusQueryURL)
   .then(res => {
-  var resTrail = res.data.response.hits;
-  setArtists(resTrail);
-  console.log(resTrail);
+  setArtists(res.data.response.hits);
+  console.log(res.data.response.hits);
   })
+  .then(
+    axios.get(geniusArtistURL)
+    .then(res => {
+    setArtistsAPI(res.data.response.hits);
+    console.log(res.data.response.hits)
+    })
+  )
   .catch(error => {
     console.log(error);
   });
