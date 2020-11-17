@@ -13,20 +13,14 @@ function App() {
   var geniusQueryURL = `https://api.genius.com/search?access_token=${clientAccessToken}&q=${query}`;
   var geniusArtistURL = `https://api.genius.com/${artistsAPI}?access_token=${clientAccessToken}`;
 
-
 const geniusRequest = () => {
   axios.get(geniusQueryURL)
   .then(res => {
   setArtists(res.data.response.hits);
-  console.log(res.data.response.hits);
+  setArtistsAPI(res.data.response.hits[0].result.primary_artist.api_path);
+  console.log(res.data.response.hits[0].result.primary_artist.api_path);
+  console.log(geniusArtistURL);
   })
-  .then(
-    axios.get(geniusArtistURL)
-    .then(res => {
-    setArtistsAPI(res.data.response.hits);
-    console.log(res.data.response.hits)
-    })
-  )
   .catch(error => {
     console.log(error);
   });
