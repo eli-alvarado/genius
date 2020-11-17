@@ -16,10 +16,16 @@ function App() {
 const geniusRequest = () => {
   axios.get(geniusQueryURL)
   .then(res => {
+<<<<<<< HEAD
   setArtists(res.data.response.hits);
   setArtistsAPI(res.data.response.hits[0].result.primary_artist.api_path);
   console.log(res.data.response.hits[0].result.primary_artist.api_path);
   console.log(geniusArtistURL);
+=======
+    setArtistsAPI(res.data.response.hits[0].result.primary_artist.api_path);
+    console.log(res.data.response.hits[0].result.primary_artist.api_path)
+    console.log(res.data.response.hits);
+>>>>>>> 76c84363133db6cc419738dc0c3ba35125464c72
   })
   .catch(error => {
     console.log(error);
@@ -49,14 +55,7 @@ const getQuery = e => {
         </form>
       </div>
       <div className="genius-inner-container">
-      {artists.map((artist,index) => (
-        <Artist 
-        key = {index}
-        mainArtist = {artist.result.primary_artist.name}
-        songName = {artist.result.title}
-        coverImage = {artist.result.song_art_image_url}
-        />
-      ))}
+
       </div>
     </div>
   );
