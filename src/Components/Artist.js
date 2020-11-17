@@ -1,11 +1,9 @@
 import React from 'react'
 
-const Artist = ({mainArtist, songName, coverImage}) => {
+const Artist = ({alternateNames}) => {
     return(
         <div className="single-song-container">
-        <h1>{songName}</h1>
-        <p>{mainArtist}</p>
-        <img src={coverImage} alt=""/>
+        <h1>{alternateNames}</h1>
         </div>
     )
 }
