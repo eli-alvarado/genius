@@ -16,16 +16,10 @@ function App() {
 const geniusRequest = () => {
   axios.get(geniusQueryURL)
   .then(res => {
-<<<<<<< HEAD
   setArtists(res.data.response.hits);
   setArtistsAPI(res.data.response.hits[0].result.primary_artist.api_path);
   console.log(res.data.response.hits[0].result.primary_artist.api_path);
   console.log(geniusArtistURL);
-=======
-    setArtistsAPI(res.data.response.hits[0].result.primary_artist.api_path);
-    console.log(res.data.response.hits[0].result.primary_artist.api_path)
-    console.log(res.data.response.hits);
->>>>>>> 76c84363133db6cc419738dc0c3ba35125464c72
   })
   .catch(error => {
     console.log(error);
