@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Artist = ({alternateNames}) => {
+const Artist = ({name}) => {
     return(
         <div className="single-song-container">
-        <h1>{alternateNames}</h1>
+        <h1>{name}</h1>
         </div>
     )
 }

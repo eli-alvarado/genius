@@ -4,22 +4,30 @@ import axios from 'axios';
 
 function App() {
 
-  const [artists, setArtists] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('');
   const [artistsAPI, setArtistsAPI] = useState('');
+  const [artistInfo, setArtistInfo] = useState([])
 
   var clientAccessToken = 'rnGNBFYfq9SZiCFfFqJmA6HGksYEkx3QetJYqYYeJUjoFajhfbdSHrbeUgWp2cFa';
   var geniusQueryURL = `https://api.genius.com/search?access_token=${clientAccessToken}&q=${query}`;
-  var geniusArtistURL = `https://api.genius.com/${artistsAPI}?access_token=${clientAccessToken}`;
+  var geniusArtistURL = `https://api.genius.com${artistsAPI}/?access_token=${clientAccessToken}`;
 
 const geniusRequest = () => {
   axios.get(geniusQueryURL)
-  .then(res => {
-  setArtists(res.data.response.hits);
-  setArtistsAPI(res.data.response.hits[0].result.primary_artist.api_path);
-  console.log(res.data.response.hits[0].result.primary_artist.api_path);
-  console.log(geniusArtistURL);
+  .then((res) => {
+    console.log(res.data.response.hits[0].result.primary_artist.api_path);
+    console.log('first response..')
+    console.log('this is the artistsAPI: ' + artistsAPI)
+    setArtistsAPI(res.data.response.hits[0].result.primary_artist.api_path);
+    console.log(geniusArtistURL);
+    return axios.get(geniusArtistURL);
+  })
+  .then((res) => {
+    console.log('second response')
+    setArtistInfo(res.data.response.artist.name)
+    console.log(res.data.response.artist)
+    console.log(res.data.response.artist.name)  
   })
   .catch(error => {
     console.log(error);
@@ -49,7 +57,14 @@ const getQuery = e => {
         </form>
       </div>
       <div className="genius-inner-container">
-
+      {
+        Object.keys(artistInfo).map((person, index) => (
+          <Artist 
+            key = {index}
+            name = {person}
+          />
+        ))
+      }
       </div>
     </div>
   );
