@@ -25,9 +25,11 @@ const geniusRequest = () => {
   })
   .then((res) => {
     console.log('second response')
-    setArtistInfo(res.data.response.artist)
-    console.log(res.data.response.artist)
-    console.log(res.data.response.artist.name)  
+    let returnValue = res.data.response.artist
+    let artistArray = []
+    artistArray.push(returnValue)
+    console.log(artistArray)
+    setArtistInfo(artistArray)
   })
   .catch(error => {
     console.log(error);
@@ -47,7 +49,6 @@ const getQuery = e => {
   setQuery(search);
 }
 
-
   return (
     <div className="genius-outer-container">
       <div className="genius-form-container">
@@ -57,14 +58,12 @@ const getQuery = e => {
         </form>
       </div>
       <div className="genius-inner-container">
-      {
-        Object.keys(artistInfo).map((person, index) => (
-          <Artist 
-            key = {index}
-            name = {person}
-          />
-        ))
-      }
+      {artistInfo.map((person, index) => (
+        <Artist 
+          key = {index}
+          name = {person.name}
+        />
+      ))}
       </div>
     </div>
   );
