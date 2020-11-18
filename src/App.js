@@ -25,7 +25,7 @@ const geniusRequest = () => {
   })
   .then((res) => {
     console.log('second response')
-    setArtistInfo(res.data.response.artist.name)
+    setArtistInfo(res.data.response.artist)
     console.log(res.data.response.artist)
     console.log(res.data.response.artist.name)  
   })
