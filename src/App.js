@@ -62,6 +62,7 @@ const getQuery = e => {
         <Artist 
           key = {index}
           name = {person.name}
+          image = {person.image_url}
         />
       ))}
       </div>
